@@ -1,36 +1,23 @@
 "use client"
 
-import * as React from "react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 
+
+
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import { useIsMobile } from "@/hooks/use-mobile"
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+import * as React from "react"
+
+
+
 
 export const description = "An interactive area chart"
+
+
+
 
 const chartData = [
   { date: "2024-04-01", desktop: 222, mobile: 150 },
@@ -124,7 +111,10 @@ const chartData = [
   { date: "2024-06-28", desktop: 149, mobile: 200 },
   { date: "2024-06-29", desktop: 103, mobile: 160 },
   { date: "2024-06-30", desktop: 446, mobile: 400 },
-]
+];
+
+
+
 
 const chartConfig = {
   visitors: {
@@ -138,7 +128,10 @@ const chartConfig = {
     label: "Mobile",
     color: "var(--primary)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
+
+
+
 
 export function ChartAreaInteractive() {
   const isMobile = useIsMobile()
@@ -168,12 +161,14 @@ export function ChartAreaInteractive() {
     <Card className="@container/card">
       <CardHeader>
         <CardTitle>Total Visitors</CardTitle>
+
         <CardDescription>
           <span className="hidden @[540px]/card:block">
             Total for the last 3 months
           </span>
           <span className="@[540px]/card:hidden">Last 3 months</span>
         </CardDescription>
+
         <CardAction>
           <ToggleGroup
             type="single"
@@ -208,6 +203,8 @@ export function ChartAreaInteractive() {
           </Select>
         </CardAction>
       </CardHeader>
+
+
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
@@ -288,4 +285,4 @@ export function ChartAreaInteractive() {
       </CardContent>
     </Card>
   )
-}
+};

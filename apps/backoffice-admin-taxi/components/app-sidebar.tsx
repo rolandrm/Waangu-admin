@@ -1,37 +1,20 @@
 "use client";
 
-import * as React from "react";
-import {
-  IconCamera,
-  IconChartBar,
-  IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
-  IconSettings,
-  IconUsers,
-} from "@tabler/icons-react";
 
-import { NavDocuments } from "@/components/nav-documents";
-import { NavMain } from "@/components/nav-main";
-import { NavSecondary } from "@/components/nav-secondary";
+
+
+import { IconCamera, IconCar, IconChartBar, IconDashboard, IconDatabase, IconFileAi, IconFileDescription, IconFileWord, IconFolder, IconHelp, IconInnerShadowTop, IconListDetails, IconReport, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+// import { NavSecondary } from "@/components/nav-secondary";
+// import { NavDocuments } from "@/components/nav-documents";
+// import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+// import { Button } from "./ui/button";
+import * as React from "react";
+import Link from "next/link";
+
+
+
 
 const data = {
   user: {
@@ -46,9 +29,9 @@ const data = {
       icon: IconDashboard,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
+      title: "Taxi",
+      url: "/taxi",
+      icon: IconCar,
     },
     {
       title: "Analytics",
@@ -133,51 +116,99 @@ const data = {
   ],
   documents: [
     {
-      name: "Data Library",
+      title: "Data Library",
       url: "#",
       icon: IconDatabase,
     },
     {
-      name: "Reports",
+      title: "Reports",
       url: "#",
       icon: IconReport,
     },
     {
-      name: "Word Assistant",
+      title: "Word Assistant",
       url: "#",
       icon: IconFileWord,
     },
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  return (
-    <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">
-                  Waangu Taxi-Admin
-                </span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-    </Sidebar>
-  );
+
+
+
+type TNavGroupProps = {
+  url_prefix: string;
+  navs: {
+    title: string;
+    url: string;
+    icon: typeof IconCamera;
+  }[]
 }
+function NavGroups({ navs, url_prefix }: TNavGroupProps) {
+  return <SidebarGroup>
+    <SidebarGroupContent className="flex flex-col gap-2">
+      {/* <SidebarMenu>
+        <SidebarMenuItem className="flex items-center gap-2">
+          <SidebarMenuButton
+            tooltip="Quick Create"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+          >
+            <IconCirclePlusFilled />
+            <span>Quick Create</span>
+          </SidebarMenuButton>
+          <Button
+            size="icon"
+            className="size-8 group-data-[collapsible=icon]:opacity-0"
+            variant="outline"
+          >
+            <IconMail />
+            <span className="sr-only">Inbox</span>
+          </Button>
+        </SidebarMenuItem>
+      </SidebarMenu> */}
+      <SidebarMenu>
+        {
+          navs.map((item) => <Link key={item.title} href={url_prefix + item.url}>
+            <SidebarMenuItem>
+              <SidebarMenuButton tooltip={item.title}>
+                {item.icon && <item.icon />}
+                <span>{item.title}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </Link>)
+        }
+      </SidebarMenu>
+    </SidebarGroupContent>
+  </SidebarGroup>
+};
+
+
+
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  return <Sidebar collapsible="offcanvas" {...props}>
+    {/* <SidebarHeader>
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
+            <a href="#">
+              <IconInnerShadowTop className="!size-5" />
+              <span className="text-base font-semibold">
+                Waangu Taxi-Admin
+              </span>
+            </a>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    </SidebarHeader> */}
+
+    <SidebarContent>
+      <NavGroups navs={data.navMain} url_prefix="/dashboard" />
+      <NavGroups navs={data.documents} url_prefix="/dashboard" />
+      <NavGroups navs={data.navSecondary} url_prefix="/dashboard" />
+    </SidebarContent>
+    <SidebarFooter>
+      <NavUser user={data.user} />
+    </SidebarFooter>
+  </Sidebar>;
+};
