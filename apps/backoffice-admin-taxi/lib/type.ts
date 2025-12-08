@@ -19,12 +19,27 @@ export type TCountry = {
         common: string
         official: string
         native: {
-            eng: {
+            fra: {
                 official: string
                 common: string
                 _id: string
             }
-            smo: {
+            kon: {
+                official: string
+                common: string
+                _id: string
+            }
+            lin: {
+                official: string
+                common: string
+                _id: string
+            }
+            lua: {
+                official: string
+                common: string
+                _id: string
+            }
+            swa: {
                 official: string
                 common: string
                 _id: string
@@ -32,7 +47,166 @@ export type TCountry = {
         }
         _id: string
     }
-};
+    tld: Array<string>
+    cca2: string
+    ccn3: string
+    cca3: string
+    cioc: string
+    independent: boolean
+    status: string
+    unMember: boolean
+    currencies: {
+        CDF: {
+            name: string
+            symbol: string
+            _id: string
+        }
+    }
+    idd: {
+        root: string
+        suffixes: Array<string>
+        _id: string
+    }
+    capital: Array<string>
+    altSpellings: Array<string>
+    region: string
+    subregion: string
+    languages: {
+        fra: string
+        kon: string
+        lin: string
+        lua: string
+        swa: string
+    }
+    translations: {
+        ces: {
+            official: string
+            common: string
+            _id: string
+        }
+        cym: {
+            official: string
+            common: string
+            _id: string
+        }
+        deu: {
+            official: string
+            common: string
+            _id: string
+        }
+        est: {
+            official: string
+            common: string
+            _id: string
+        }
+        fin: {
+            official: string
+            common: string
+            _id: string
+        }
+        fra: {
+            official: string
+            common: string
+            _id: string
+        }
+        hrv: {
+            official: string
+            common: string
+            _id: string
+        }
+        hun: {
+            official: string
+            common: string
+            _id: string
+        }
+        ita: {
+            official: string
+            common: string
+            _id: string
+        }
+        jpn: {
+            official: string
+            common: string
+            _id: string
+        }
+        kor: {
+            official: string
+            common: string
+            _id: string
+        }
+        nld: {
+            official: string
+            common: string
+            _id: string
+        }
+        per: {
+            official: string
+            common: string
+            _id: string
+        }
+        pol: {
+            official: string
+            common: string
+            _id: string
+        }
+        por: {
+            official: string
+            common: string
+            _id: string
+        }
+        rus: {
+            official: string
+            common: string
+            _id: string
+        }
+        slk: {
+            official: string
+            common: string
+            _id: string
+        }
+        spa: {
+            official: string
+            common: string
+            _id: string
+        }
+        swe: {
+            official: string
+            common: string
+            _id: string
+        }
+        urd: {
+            official: string
+            common: string
+            _id: string
+        }
+        zho: {
+            official: string
+            common: string
+            _id: string
+        }
+    }
+    latlng: Array<number>
+    landlocked: boolean
+    borders: Array<string>
+    area: number
+    flag: string
+    demonyms: {
+        eng: {
+            f: string
+            m: string
+        }
+        fra: {
+            f: string
+            m: string
+        }
+        _id: string
+    }
+    statut: boolean
+    createdAt: string
+    updatedAt: string
+    __v: number
+}
+
 
 
 
@@ -504,40 +678,40 @@ export type TMetaTableProps<T> = {
 
 
 export type TDriverDashboardData = {
-  summary: {
-    activeDrivers: number
-    totalCars: number
-    carsWithInsurance: number
-    rejectedDrivers: number
-  }
-  carsByCategory: Array<{
-    categoryId: string
-    categoryName: string
-    count: number
-    percentage: string
-  }>
-  insurance: {
-    carsWithInsurance: number
-    carsWithoutInsurance: number
-    percentage: string
-  }
-  registrationTrends: {
-    period: string
-    trends: Array<{
-      _id: string
-      totalRegistrations: number
-      activeDrivers: number
-      pendingDrivers: number
-      phoneVerifiedDrivers: number
-      inactiveDrivers: number
-    }>
     summary: {
-      totalRegistrations: number
-      averagePerPeriod: string
-      growthRate: string
-      periodsAnalyzed: number
+        activeDrivers: number
+        totalCars: number
+        carsWithInsurance: number
+        rejectedDrivers: number
     }
-  }
-  filters: {}
-  generatedAt: string
+    carsByCategory: Array<{
+        categoryId: string
+        categoryName: string
+        count: number
+        percentage: string
+    }>
+    insurance: {
+        carsWithInsurance: number
+        carsWithoutInsurance: number
+        percentage: string
+    }
+    registrationTrends: {
+        period: string
+        trends: Array<{
+            _id: string
+            totalRegistrations: number
+            activeDrivers: number
+            pendingDrivers: number
+            phoneVerifiedDrivers: number
+            inactiveDrivers: number
+        }>
+        summary: {
+            totalRegistrations: number
+            averagePerPeriod: string
+            growthRate: string
+            periodsAnalyzed: number
+        }
+    }
+    filters: {}
+    generatedAt: string
 };

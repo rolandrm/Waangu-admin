@@ -145,9 +145,9 @@ export function useCarCategory() {
 
 
 
-export function useDriverDashboard() {
+export function useDriverDashboard(queries: Record<any, any> = {}) {
     return useQuery({
-        queryKey: [],
-        queryFn: async () => API.get<{ data: TDriverDashboardData }>("/dashboard/complete").then(({ data }) => data.data)
+        queryKey: QUERY_KEYS.DRIVER_DASHBOARD_DATA(queries),
+        queryFn: async () => API.get<{ data: TDriverDashboardData }>("/dashboard/complete", { params: queries }).then(({ data }) => data.data)
     });
 };

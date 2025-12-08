@@ -7,7 +7,7 @@ import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle }
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 // import { useIsMobile } from "@/hooks/use-mobile"
 import { TDriverDashboardData } from "@/lib/type"
 import * as React from "react"
@@ -18,6 +18,11 @@ import * as React from "react"
 type TChartCardProps = {
     data: TDriverDashboardData;
 };
+
+
+
+
+
 
 
 
@@ -35,11 +40,12 @@ export default function ChartCard({ data }: TChartCardProps) {
         },
         Active: {
             label: "activeDrivers",
-            color: "var(--primary)",
+            color: "var(--background)",
         },
         Inactive: {
             label: "inactiveDrivers",
-            color: "var(--primary)",
+            color: "var(--destructive)",
+            // color: "red",
         },
     } satisfies ChartConfig;
 

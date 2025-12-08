@@ -5,6 +5,7 @@
 
 import { useQueries, type UseQueryResult } from "@tanstack/react-query";
 import { TCountry, TServerResponse } from "@/lib/type";
+import QUERY_KEYS from "@/lib/QUERY_KEYS";
 import API from "@/lib/API";
 import React from "react"
 
@@ -22,7 +23,7 @@ export default function UtilsProvider(props: React.PropsWithChildren) {
     const [country] = useQueries({
         queries: [
             {
-                queryKey: [],
+                queryKey: QUERY_KEYS.COUNTRY_LIST(),
                 queryFn: async () => API.get<TServerResponse<TCountry[]>>("/country").then(({ data }) => data)
             }
         ]
